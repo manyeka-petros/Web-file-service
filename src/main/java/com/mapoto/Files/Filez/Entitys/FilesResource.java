@@ -1,4 +1,4 @@
-package com.mapoto.Files.Entitys;
+package com.mapoto.Files.Filez.Entitys;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

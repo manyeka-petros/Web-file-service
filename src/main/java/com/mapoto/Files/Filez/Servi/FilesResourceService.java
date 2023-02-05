@@ -1,9 +1,7 @@
-package com.mapoto.Files.Servi;
+package com.mapoto.Files.Filez.Servi;
 
-import com.mapoto.Files.Entitys.FilesResource;
+import com.mapoto.Files.Filez.Entitys.FilesResource;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 
 public interface FilesResourceService {
     FilesResource uploadFiles(MultipartFile file) throws Exception;

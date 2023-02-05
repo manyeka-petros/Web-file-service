@@ -1,11 +1,10 @@
-package com.mapoto.Files.Contro;
+package com.mapoto.Files.Filez.Contro;
 
-import com.mapoto.Files.Entitys.FilesResource;
-import com.mapoto.Files.Models.FilesModels;
-import com.mapoto.Files.Servi.FilesResourceImplement;
-import com.mapoto.Files.Servi.FilesResourceService;
+import com.mapoto.Files.Filez.Entitys.FilesResource;
+import com.mapoto.Files.Filez.Models.FilesModels;
+import com.mapoto.Files.Filez.Servi.FilesResourceImplement;
+import com.mapoto.Files.Filez.Servi.FilesResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;

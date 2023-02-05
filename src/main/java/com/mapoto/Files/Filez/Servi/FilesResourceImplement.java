@@ -1,7 +1,7 @@
-package com.mapoto.Files.Servi;
+package com.mapoto.Files.Filez.Servi;
 
-import com.mapoto.Files.Entitys.FilesResource;
-import com.mapoto.Files.Reposit.FilesResourceRepository;
+import com.mapoto.Files.Filez.Entitys.FilesResource;
+import com.mapoto.Files.Filez.Reposit.FilesResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;

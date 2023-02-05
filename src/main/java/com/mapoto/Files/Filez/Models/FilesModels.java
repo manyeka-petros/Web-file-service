@@ -1,4 +1,4 @@
-package com.mapoto.Files.Models;
+package com.mapoto.Files.Filez.Models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
