@@ -24,5 +24,6 @@ public class AppUser {
     private String email;
     private String password;
     private AppUserRoles appUserRoles;
+    private boolean isEnabled = false;
 
 }
