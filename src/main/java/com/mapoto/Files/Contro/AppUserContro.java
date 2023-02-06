@@ -13,12 +13,12 @@ public class AppUserContro {
     @Autowired
     private AppUserServi appUserServi;
 
-    @PostMapping
+    @PostMapping("/posts")
     public String registerUsers(@RequestBody AppUserModels appUserModels){
         return appUserServi.registerUser(appUserModels);
 
     }
-    @GetMapping
+    @GetMapping("/gets")
     public List<AppUser> getAllUsers(){
         return appUserServi.getAllUsers();
     }
@@ -26,5 +26,13 @@ public class AppUserContro {
 
     public String removeUser(@PathVariable Long userId){
         return appUserServi.removeUser(userId);
+    }
+    @GetMapping("/check")
+    public String check(){
+        return "check mapoto prlease";
+    }
+    @GetMapping("/look")
+    public String view(){
+        return "view  mapoto status";
     }
 }

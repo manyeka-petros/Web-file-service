@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 
 public class AppUserDetails implements UserDetails {
     private Long userId;
-   private String userName;
+   private String username;
     private  String email;
 
     private String password;
@@ -31,7 +31,7 @@ public class AppUserDetails implements UserDetails {
 
     public AppUserDetails(Long userId, String userName, String email, String password, Collection<? extends GrantedAuthority> authorities) {
         this.userId = userId;
-        this.userName = userName;
+        this.username = username;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
@@ -44,7 +44,7 @@ public class AppUserDetails implements UserDetails {
 
         return  new AppUserDetails(
                 appUser.getUserId(),
-                appUser.getUserName(),
+                appUser.getUsername(),
                 appUser.getEmail(),
                 appUser.getPassword(),
                 authorities1
@@ -65,7 +65,7 @@ public class AppUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return userName;
+        return username;
     }
 
     @Override

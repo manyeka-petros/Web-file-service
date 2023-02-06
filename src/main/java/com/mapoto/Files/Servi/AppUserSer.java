@@ -17,9 +17,9 @@ public class AppUserSer implements UserDetailsService {
     @Autowired
     private AppUserRepository appUserRepository;
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        AppUser appUser = appUserRepository.findAppUserByEmail(email).orElseThrow(
-                ()->    new UsernameNotFoundException("The user with email "+ email + "not found")
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        AppUser appUser = appUserRepository.findAppUserByUsername(username).orElseThrow(
+                ()->    new UsernameNotFoundException("The user with email "+ username+ "not found")
         );
         return AppUserDetails.build(appUser);
     }

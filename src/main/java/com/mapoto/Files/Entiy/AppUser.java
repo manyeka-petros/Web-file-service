@@ -18,7 +18,7 @@ public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
-    private String userName;
+    private String username;
     private String email;
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
