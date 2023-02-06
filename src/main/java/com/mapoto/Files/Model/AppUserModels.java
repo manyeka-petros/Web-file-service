@@ -10,8 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AppUserModels {
-    private String firstName;
-    private String lastName;
+    private String userName;
     private  String email;
     private String password;
 }

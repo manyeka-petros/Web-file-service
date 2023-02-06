@@ -18,8 +18,7 @@ public class AppUserServiImpleme implements AppUserServi{
     @Override
     public String registerUser(AppUserModels appUserModels) {
         AppUser appUser = new AppUser();
-        appUser.setFirstName(appUserModels.getFirstName());
-        appUser.setLastName(appUserModels.getLastName());
+        appUser.setUserName(appUserModels.getUserName());
         appUser.setEmail(appUserModels.getEmail());
         appUser.setPassword(passwordEncoder.encode(appUserModels.getPassword()));
         appUserRepository.save(appUser);

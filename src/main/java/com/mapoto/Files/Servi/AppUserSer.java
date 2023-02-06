@@ -1,6 +1,7 @@
 package com.mapoto.Files.Servi;
 
 import com.mapoto.Files.Entiy.AppUser;
+import com.mapoto.Files.Entiy.AppUserDetails;
 import com.mapoto.Files.Reposito.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -20,6 +21,6 @@ public class AppUserSer implements UserDetailsService {
         AppUser appUser = appUserRepository.findAppUserByEmail(email).orElseThrow(
                 ()->    new UsernameNotFoundException("The user with email "+ email + "not found")
         );
-        return new User(appUser.getEmail(),appUser.getPassword(),new ArrayList<>());
+        return AppUserDetails.build(appUser);
     }
 }
