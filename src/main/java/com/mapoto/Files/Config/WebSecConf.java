@@ -25,7 +25,8 @@ public class WebSecConf {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .csrf().disable()
-                .authorizeHttpRequests().anyRequest().permitAll();
+                .authorizeHttpRequests().anyRequest().permitAll()
+                .and().httpBasic();
 
 
 

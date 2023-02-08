@@ -30,9 +30,9 @@ public class FilesResourceControl {
     @PostMapping( value = "/upload",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 
     public FilesModels uploadFiles(@RequestParam("file") MultipartFile file) throws Exception {
-        FilesResource filesResource = null;
+        //FilesResource filesResource = null;
         String downloadUrl = "";
-        filesResource = filesResourceService.uploadFiles(file);
+      FilesResource  filesResource = filesResourceService.uploadFiles(file);
 
         downloadUrl = ServletUriComponentsBuilder.fromCurrentContextPath().path("/download/")
                 .path(filesResource.getFileId()).toUriString();

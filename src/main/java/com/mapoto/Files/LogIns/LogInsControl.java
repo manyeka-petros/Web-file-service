@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LogInsControl {
     @Autowired
     private  AuthenticationManager authenticationManager;
-    @PostMapping("/log")
+    @PostMapping("/sail")
     public String logIns(@RequestBody LogInRequest logInRequest){
         Authentication authentication;
         try {

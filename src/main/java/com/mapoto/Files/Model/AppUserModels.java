@@ -2,6 +2,7 @@ package com.mapoto.Files.Model;
 
 import com.mapoto.Files.Entiy.AppUserRoles;
 import com.mapoto.Files.Entiy.Roles;
+import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
@@ -17,6 +18,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class AppUserModels {
     private String username;
+
     private  String email;
     private String password;
     private Set<String> roles;
