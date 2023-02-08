@@ -13,9 +13,9 @@ import lombok.Setter;
 @Entity
 public class Roles {
 @Id
-@GeneratedValue(strategy = GenerationType.AUTO)
+@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 @Enumerated(EnumType.STRING)
-    private AppUserRoles appUserRoles;
+    private AppUserRoles name;
 }

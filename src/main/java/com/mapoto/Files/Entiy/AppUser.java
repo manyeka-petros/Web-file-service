@@ -22,7 +22,13 @@ public class AppUser {
     private String email;
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
-    private Collection<Roles>roles = new ArrayList<>();
+    private Set<Roles> roles = new HashSet<>();
     private boolean isEnabled = false;
 
+    public AppUser( String username, String email, String password) {
+
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 }

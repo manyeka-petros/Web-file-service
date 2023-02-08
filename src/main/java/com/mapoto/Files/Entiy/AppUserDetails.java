@@ -39,7 +39,7 @@ public class AppUserDetails implements UserDetails {
 
     public static AppUserDetails build(AppUser appUser){
         List<GrantedAuthority> authorities1 = appUser.getRoles().stream()
-                .map(roles -> new SimpleGrantedAuthority(roles.getAppUserRoles().name()))
+                .map(roles -> new SimpleGrantedAuthority(roles.getName().name()))
                 .collect(Collectors.toList());
 
         return  new AppUserDetails(
