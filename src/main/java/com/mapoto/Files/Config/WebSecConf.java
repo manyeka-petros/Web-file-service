@@ -1,5 +1,6 @@
 package com.mapoto.Files.Config;
 
+import com.mapoto.Files.Servi.AppUserSer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +18,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @Configuration
 public class WebSecConf {
+    @Autowired
+    private AppUserSer appUserSer;
 
     private static final String[] END_POINTS = {"/check","/look","/gets"};
     @Autowired
@@ -25,18 +28,13 @@ public class WebSecConf {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .csrf().disable()
-                .authorizeHttpRequests().anyRequest().permitAll()
-                .and().httpBasic();
-
-
-
-
+                .authorizeHttpRequests().anyRequest().authenticated();
         return httpSecurity.build();
 
     }
     public DaoAuthenticationProvider daoAuthenticationProvider(){
         DaoAuthenticationProvider provider= new DaoAuthenticationProvider();
-        provider.setUserDetailsService(userDetailsService);
+        provider.setUserDetailsService(appUserSer);
         provider.setPasswordEncoder(passwordEncoder());
         return provider;
     }

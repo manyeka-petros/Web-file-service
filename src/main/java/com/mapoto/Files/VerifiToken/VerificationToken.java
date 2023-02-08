@@ -20,6 +20,7 @@ public class VerificationToken {
     private Long tokenId;
     private String token;
     private LocalDate createdAt;
+    private LocalDate confirmedAt;
     private LocalDate expiresAt;
     @ManyToOne
     @JoinColumn(

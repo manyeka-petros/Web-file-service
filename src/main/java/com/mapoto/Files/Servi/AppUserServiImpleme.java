@@ -8,25 +8,35 @@ import com.mapoto.Files.Entiy.Roles;
 import com.mapoto.Files.Model.AppUserModels;
 import com.mapoto.Files.Reposito.AppUserRepository;
 import com.mapoto.Files.Reposito.RolesReposito;
+import com.mapoto.Files.VerifiToken.VerificationToken;
+import com.mapoto.Files.VerifiToken.VerificationTokenRepository;
+import com.mapoto.Files.VerifiToken.VerificationTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 @Service
 public class AppUserServiImpleme implements AppUserServi{
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
+    private VerificationTokenRepository verificationTokenRepository;
+    @Autowired
     private AppUserRepository appUserRepository;
     @Autowired
     private RolesReposito rolesReposito;
+    @Autowired
+    private VerificationTokenService verificationTokenService;
 
 
 
@@ -50,7 +60,7 @@ public class AppUserServiImpleme implements AppUserServi{
     @Override
     public String registerUsers(AppUserModels appUserModels) {
         if(appUserRepository.existsByUsername(appUserModels.getUsername())){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"The username already exist");
+            throw new IllegalStateException("The user is already exist");
         }
         if(appUserRepository.existsByEmail(appUserModels.getEmail())){
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST,"The email entered already exist");
@@ -94,7 +104,33 @@ public class AppUserServiImpleme implements AppUserServi{
             );
         }
         appUser.setRoles(roles);
+
         appUserRepository.save(appUser);
+        String token = UUID.randomUUID().toString();
+        VerificationToken verificationToken = new VerificationToken(
+                token, LocalDate.now(),LocalDate.now().plusDays(1),appUser
+        );
+        verificationTokenService.saveVerificationToken(verificationToken);
+
         return "saved";
+    }
+@Transactional
+    public String confirmToken(String token) {
+        VerificationToken verificationToken = verificationTokenService.getToken(token).orElseThrow(
+                ()-> new IllegalStateException("token not available")
+        );
+        if(verificationToken.getConfirmedAt() != null){
+            throw new IllegalStateException("token is already confirmed");
+        }
+        LocalDate expiredAt = verificationToken.getExpiresAt();
+        if (expiredAt.isBefore(LocalDate.now())){
+            throw new IllegalStateException("token is alredy expired");
+        }
+        verificationTokenService.setConfirmedTok(token);
+        AppUser appUser = new AppUser();
+        appUser.setEnabled(true);
+        return "confirmed";
+
+
     }
 }
