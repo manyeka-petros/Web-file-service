@@ -59,14 +59,13 @@ public class AppUserServiImpleme implements AppUserServi{
 
     @Override
     public String registerUsers(AppUserModels appUserModels) {
-        if(appUserRepository.existsByUsername(appUserModels.getUsername())){
-            throw new IllegalStateException("The user is already exist");
-        }
+
         if(appUserRepository.existsByEmail(appUserModels.getEmail())){
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST,"The email entered already exist");
         }
         AppUser appUser = new AppUser();
-        appUser.setUsername(appUserModels.getUsername());
+        appUser.setFirstname(appUserModels.getFirstname());
+        appUser.setLastname(appUserModels.getLastname());
         appUser.setEmail(appUserModels.getEmail());
         appUser.setPassword(passwordEncoder.encode(appUserModels.getPassword()));
         Set<String> roleString = appUserModels.getRoles();

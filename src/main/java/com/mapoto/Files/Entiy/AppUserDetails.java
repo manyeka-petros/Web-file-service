@@ -1,8 +1,5 @@
 package com.mapoto.Files.Entiy;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +8,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,20 +18,23 @@ import java.util.stream.Collectors;
 
 public class AppUserDetails implements UserDetails {
     private Long userId;
-   private String username;
-    private  String email;
+    private String firstname;
+    private String lastname;
+    private String email;
 
     private String password;
 
-    private Collection<? extends GrantedAuthority> authorities;
-
-    public AppUserDetails(Long userId, String userName, String email, String password, Collection<? extends GrantedAuthority> authorities) {
-        this.userId = userId;
-        this.username = username;
+    public AppUserDetails(Long userId, String firstname, String lastname, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
     }
+
+    private Collection<? extends GrantedAuthority> authorities;
+
+
 
     public static AppUserDetails build(AppUser appUser){
         List<GrantedAuthority> authorities1 = appUser.getRoles().stream()
@@ -44,7 +43,8 @@ public class AppUserDetails implements UserDetails {
 
         return  new AppUserDetails(
                 appUser.getUserId(),
-                appUser.getUsername(),
+                appUser.getFirstname(),
+                appUser.getLastname(),
                 appUser.getEmail(),
                 appUser.getPassword(),
                 authorities1
@@ -63,9 +63,10 @@ public class AppUserDetails implements UserDetails {
         return password;
     }
 
+
     @Override
     public String getUsername() {
-        return username;
+        return email;
     }
 
     @Override

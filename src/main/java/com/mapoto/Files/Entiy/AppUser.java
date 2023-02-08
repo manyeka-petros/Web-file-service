@@ -18,17 +18,21 @@ public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
-    private String username;
+    private String firstname;
+    private String lastname;
     private String email;
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Roles> roles = new HashSet<>();
     private boolean isEnabled = false;
+    private boolean isLocked = false;
 
-    public AppUser( String username, String email, String password) {
-
-        this.username = username;
+    public AppUser(String firstname, String lastname, String email, String password, Set<Roles> roles, boolean isEnabled) {
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.email = email;
         this.password = password;
+        this.roles = roles;
+        this.isEnabled = isEnabled;
     }
 }
