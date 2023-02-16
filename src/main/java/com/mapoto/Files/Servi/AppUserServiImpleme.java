@@ -37,6 +37,8 @@ public class AppUserServiImpleme implements AppUserServi{
     private RolesReposito rolesReposito;
     @Autowired
     private VerificationTokenService verificationTokenService;
+    @Autowired
+    private  AppUserSer appUserSer;
 
 
 
@@ -126,8 +128,9 @@ public class AppUserServiImpleme implements AppUserServi{
             throw new IllegalStateException("token is alredy expired");
         }
         verificationTokenService.setConfirmedTok(token);
-        AppUser appUser = new AppUser();
-        appUser.setEnabled(true);
+        appUserSer.enableAppUser(verificationToken.getAppUser().getEmail());
+
+
         return "confirmed";
 
 

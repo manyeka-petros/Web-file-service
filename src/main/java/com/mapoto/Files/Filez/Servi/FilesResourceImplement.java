@@ -40,7 +40,8 @@ public class FilesResourceImplement implements FilesResourceService{
         );
     }
 
-    public Stream<FilesResource> getAllFiles() {
+    public Stream<FilesResource> getAllFiles()
+    {
         return filesResourceRepository.findAll().stream();
     }
 }

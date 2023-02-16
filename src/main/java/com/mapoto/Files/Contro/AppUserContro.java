@@ -36,7 +36,7 @@ public class AppUserContro {
     public String view(){
         return "view  mapoto status";
     }
-    @PostMapping("/mapo")
+    @PostMapping("/save")
     public String registerUsers(@RequestBody AppUserModels appUserModels){
         return appUserServi.registerUsers(appUserModels);
     }
